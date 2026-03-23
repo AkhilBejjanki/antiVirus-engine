@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PyGuard AV</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Background grid -->
+  <div class="bg-grid"></div>
+  <div class="scanline"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="shield-icon">
+          <svg viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L4 9V22C4 31.4 11.1 40.2 20 42C28.9 40.2 36 31.4 36 22V9L20 2Z" stroke="#00ff88" stroke-width="2" fill="none"/>
+            <path d="M13 22L18 27L27 17" stroke="#00ff88" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-main">PyGuard</span>
+          <span class="logo-sub">AV ENGINE v1.0</span>
+        </div>
+      </div>
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-text">SYSTEM ONLINE</span>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+
+      <!-- Upload Section -->
+      <section class="upload-section">
+        <div class="section-label">// THREAT ANALYSIS</div>
+        <h1 class="main-title">DROP FILE TO<br/><span class="accent">SCAN</span></h1>
+        <p class="subtitle">Hash-based malware detection engine. Upload any file to check against known threat signatures.</p>
+
+        <div class="upload-box" id="uploadBox">
+          <div class="upload-inner">
+            <div class="upload-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="14" width="32" height="26" rx="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M24 8V28M24 8L18 14M24 8L30 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="upload-text">Drag & drop file here</p>
+            <p class="upload-sub">or</p>
+            <label class="browse-btn" for="fileInput">BROWSE FILES</label>
+            <input type="file" id="fileInput" hidden />
+          </div>
+          <div class="upload-corner tl"></div>
+          <div class="upload-corner tr"></div>
+          <div class="upload-corner bl"></div>
+          <div class="upload-corner br"></div>
+        </div>
+
+        <div class="file-selected" id="fileSelected" style="display:none">
+          <span class="file-icon">▸</span>
+          <span class="file-name" id="fileName"></span>
+          <span class="file-size" id="fileSize"></span>
+        </div>
+
+        <button class="scan-btn" id="scanBtn" disabled>
+          <span class="btn-text">INITIATE SCAN</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </section>
+
+      <!-- Scanning Animation -->
+      <div class="scanning-overlay" id="scanningOverlay" style="display:none">
+        <div class="scanning-box">
+          <div class="scan-bar"></div>
+          <p class="scan-label">ANALYZING FILE...</p>
+          <div class="scan-steps">
+            <div class="step" id="step1">Computing MD5 hash...</div>
+            <div class="step" id="step2">Computing SHA1 hash...</div>
+            <div class="step" id="step3">Computing SHA256 hash...</div>
+            <div class="step" id="step4">Checking signature database...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <section class="results-section" id="resultsSection" style="display:none">
+        <div class="section-label">// SCAN RESULTS</div>
+
+        <div class="verdict-box" id="verdictBox">
+          <div class="verdict-icon" id="verdictIcon"></div>
+          <div class="verdict-text">
+            <div class="verdict-label">VERDICT</div>
+            <div class="verdict-value" id="verdictValue"></div>
+            <div class="threat-name" id="threatName"></div>
+          </div>
+        </div>
+
+        <div class="hashes-grid">
+          <div class="hash-card">
+            <div class="hash-type">MD5</div>
+            <div class="hash-value" id="md5Value">—</div>
+          </div>
+          <div class="hash-card">
+            <div class="hash-type">SHA1</div>
+            <div class="hash-value" id="sha1Value">—</div>
+          </div>
+          <div class="hash-card wide">
+            <div class="hash-type">SHA256</div>
+            <div class="hash-value" id="sha256Value">—</div>
+          </div>
+        </div>
+
+        <div class="match-info" id="matchInfo" style="display:none">
+          <div class="match-label">MATCHED SIGNATURE</div>
+          <div class="match-detail">
+            <span class="match-type" id="matchType"></span>
+            <span class="match-hash" id="matchHash"></span>
+          </div>
+        </div>
+
+        <button class="reset-btn" id="resetBtn">← SCAN ANOTHER FILE</button>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <span>PyGuard AV Engine</span>
+      <span class="footer-sep">|</span>
+      <span>Phase 1 — Hash Detection</span>
+      <span class="footer-sep">|</span>
+      <span>Educational Project</span>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
